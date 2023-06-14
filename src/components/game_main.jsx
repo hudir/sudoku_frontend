@@ -1,7 +1,15 @@
-function GameMain(){
-    return (<nav>
+import { useContext } from "react";
+import {Context} from "../context/Context"
 
-    </nav>)
+function GameMain(){
+    const {newgame} = useContext(Context)
+
+    return (<div className="container ">
+        {newgame.map( x => (
+            <div>{x}</div>
+        ))}
+
+    </div>)
 }
 
 export default GameMain;

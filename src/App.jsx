@@ -5,7 +5,7 @@ import GameMain from './components/game_main';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container">
       <Nav/>
       <GameMain />
     
