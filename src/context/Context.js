@@ -4,6 +4,8 @@ const Context = createContext();
 
 function ContextProvider({children}) {
     const [newgame, setNewgame] = useState(['Loading'])
+    const [playerSolution, setplayerSolution] = useState({})
+
     const getNewSudoku = () =>{
         fetch("https://soduko-new-game.onrender.com/newgame")
         .then(res=>res.json())
@@ -19,7 +21,7 @@ function ContextProvider({children}) {
         let temp = []
         for(let i = 0; i< arr.length; i++) {
             temp.push(arr[i])
-            if(temp.length == long) {
+            if(temp.length === long) {
                 res.push(temp)
                 temp = []
             }  
@@ -34,7 +36,8 @@ function ContextProvider({children}) {
 
 
     return (
-        <Context.Provider value={{newgame}}>{children}</Context.Provider>
+        <Context.Provider value={{newgame, playerSolution,
+setplayerSolution}}>{children}</Context.Provider>
     )
 }
 
