@@ -7,9 +7,29 @@ function ContextProvider({children}) {
     const getNewSudoku = () =>{
         fetch("https://soduko-new-game.onrender.com/newgame")
         .then(res=>res.json())
-        .then(data=>setNewgame(data.sudoku.split('')))
+        .then(data=>{
+            const arr = convertFormat(data.sudoku.split(''))
+            setNewgame(arr)
+
+        })
     }
-    useEffect(getNewSudoku, [])
+    const convertFormat = arr =>{
+        const long = Math.sqrt(arr.length)
+        const res = []
+        let temp = []
+        for(let i = 0; i< arr.length; i++) {
+            temp.push(arr[i])
+            if(temp.length == long) {
+                res.push(temp)
+                temp = []
+            }  
+        }
+        return res
+    }
+
+    useEffect(()=> {
+        getNewSudoku()
+    }, [])
 
 
 

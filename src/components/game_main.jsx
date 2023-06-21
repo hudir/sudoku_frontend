@@ -3,13 +3,25 @@ import {Context} from "../context/Context"
 
 function GameMain(){
     const {newgame} = useContext(Context)
+    console.log(newgame)
 
     return (<div className="container">
-        {newgame.map((x,i) =>{
-        if (i % 9 === 0 ) return <div className="row"><div key={i} className="m-2 p-2 col">{x}</div>
-        else if (i % 9 === 8 ) return <div key={i} className="m-2 p-2 col">{x}</div></div>
-        return <div key={i} className="m-2 p-2 col">{x}</div>
-    })}
+       {newgame.length == 1 &&( <h1>{newgame[0]}</h1>)}
+       {newgame.length > 1 &&( 
+       <div className="container">
+        {newgame.map((row, rowIndex)=> (
+            <div className="row" key={"row"+rowIndex}>
+                {row.map((col, colIndex)=> (
+                    <div className="col" key={"col"+colIndex}>{col}</div>
+                ))}
+
+            </div>
+        ))}
+         
+
+       </div>)}
+
+
       
 
     </div>)
